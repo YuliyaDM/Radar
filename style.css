@@ -1,0 +1,115 @@
+:root{
+    --black: rgb(0, 0, 0);
+    --background-color: #212a32;
+    --background-radius: #2e3b46;
+    --background-container: #252e38;
+    --border-container: #14191e;
+    --background-radar-1: #ff9327;
+    --background-radar-2: #13a2fb;
+    --red-color: #e7290c;
+}
+
+*, *::after, *::before{
+    outline: 0;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--background-color)
+}
+
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 700px;
+    height: 500px;
+}
+
+.container{
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--background-container);
+    border-radius: 50%;
+    border: 2px solid var(--border-container);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 75px var(--black);
+}
+
+.radius-1{
+    width: 200px;
+    height: 200px;
+    border: 4px dashed white;
+    border-radius: 50%;
+    background: var(--background-radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.radius-2{
+    width: 100px;
+    height: 100px;
+    border: 2px dashed white;
+    border-radius: 50%;
+    background: var(--background-radius);
+    position: relative;
+}
+
+.radius-2::after{
+    position: absolute;
+    content: '';
+    top: calc(50% - 5px);
+    left: calc(50% - 5px);
+    width: 10px;
+    height: 10px;
+    background: var(--red-color);
+    border-radius: 50%;
+}
+
+.container::after{
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 50%;
+    transform-origin: top left;
+    height:400px;
+    width: 200px;
+    z-index: 1;
+}
+
+.c1::after{
+    animation: rotate-radar-1 5s linear infinite;
+    background: linear-gradient(to right, transparent, var(--background-radar-1));
+}
+
+.c2::after{
+    animation: rotate-radar-2 3s linear infinite;
+    background: linear-gradient(to right, transparent, var(--background-radar-2));
+}
+
+@keyframes rotate-radar-1 {
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate-radar-2 {
+    100%{
+        transform: rotate(-360deg);
+    }
+}
